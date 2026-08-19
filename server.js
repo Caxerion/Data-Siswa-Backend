@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const { testConnection } = require("./src/config/db");
 const siswaRoutes = require("./src/routes/siswaRoutes");
+const masterdataRoutes = require("./src/routes/masterdataRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/siswa", siswaRoutes);
+app.use("/api/masterdata", masterdataRoutes);
 
 // Health check
 app.get("/", (req, res) => {

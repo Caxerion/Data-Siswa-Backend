@@ -11,4 +11,9 @@ INSERT INTO siswa (kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_sisw
 ('SIS002', 'Siti Nurhaliza', 'Jl. Kebon Jeruk No. 5, Jakarta', '2007-11-02', 'Teknik Komputer Jaringan'),
 ('SIS003', 'Budi Santoso', 'Jl. Cendrawasih No. 22, Tangerang Selatan', '2008-07-25', 'Multimedia');
 
+INSERT INTO jurusan (nama_jurusan) VALUES
+('Rekayasa Perangkat Lunak'),
+('Teknik Komputer Jaringan'),
+('Multimedia');
+
 COMMIT;

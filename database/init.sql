@@ -63,6 +63,23 @@ DELIMITER ;
 -- Jalankan seed.sql setelah init.sql selesai
 -- ==========================================================
 
+CREATE TABLE IF NOT EXISTS jurusan (
+  id           INT AUTO_INCREMENT PRIMARY KEY,
+  nama_jurusan VARCHAR(100) NOT NULL UNIQUE,
+  created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Trigger update timestamp untuk tabel jurusan
+DELIMITER //
+CREATE TRIGGER trg_jurusan_before_update
+BEFORE UPDATE ON jurusan
+FOR EACH ROW
+BEGIN
+  SET NEW.updated_at = CURRENT_TIMESTAMP;
+END//
+DELIMITER ;
+
 -- Cara pakai stored procedure & function (contoh, bukan wajib dijalankan):
 -- CALL sp_get_all_siswa();
 -- SELECT fn_total_siswa();
