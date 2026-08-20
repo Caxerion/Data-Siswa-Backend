@@ -8,12 +8,13 @@ const { pool } = require("../config/db");
  * konsep berbasis objek)
  */
 class Siswa {
-  constructor({ kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, created_at, updated_at }) {
+  constructor({ kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp, created_at, updated_at }) {
     this.kode_siswa = kode_siswa;
     this.nama_siswa = nama_siswa;
     this.alamat_siswa = alamat_siswa;
     this.tgl_siswa = tgl_siswa;
     this.jurusan_siswa = jurusan_siswa;
+    this.no_telp = no_telp;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }
@@ -60,8 +61,8 @@ class Siswa {
   // ===== Instance method: simpan objek Siswa ini sebagai row baru (Create) =====
   async save() {
     await pool.query(
-      "INSERT INTO siswa (kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa) VALUES (?, ?, ?, ?, ?)",
-      [this.kode_siswa, this.nama_siswa, this.alamat_siswa, this.tgl_siswa, this.jurusan_siswa]
+      "INSERT INTO siswa (kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp) VALUES (?, ?, ?, ?, ?, ?)",
+      [this.kode_siswa, this.nama_siswa, this.alamat_siswa, this.tgl_siswa, this.jurusan_siswa, this.no_telp]
     );
     return Siswa.findByKode(this.kode_siswa);
   }
@@ -100,6 +101,7 @@ class Siswa {
       alamat_siswa: this.alamat_siswa,
       tgl_siswa: this.tgl_siswa,
       jurusan_siswa: this.jurusan_siswa,
+      no_telp: this.no_telp,
       created_at: this.created_at,
       updated_at: this.updated_at,
     };

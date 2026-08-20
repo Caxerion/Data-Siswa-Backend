@@ -49,7 +49,7 @@ class SiswaController {
   // Body sudah lolos validasi dari middleware validateCreateSiswa
   async createSiswa(req, res) {
     try {
-      let { kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa } = req.body;
+      let { kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp } = req.body;
 
       if (!kode_siswa) {
         kode_siswa = await Siswa.getNextKode();
@@ -63,7 +63,7 @@ class SiswaController {
         });
       }
 
-      const siswaBaru = new Siswa({ kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa });
+      const siswaBaru = new Siswa({ kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp });
       const saved = await siswaBaru.save();
 
       res.status(201).json({
@@ -83,7 +83,7 @@ class SiswaController {
   async updateSiswa(req, res) {
     try {
       const { kode_siswa } = req.params;
-      const { nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa } = req.body;
+      const { nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp } = req.body;
 
       const siswa = await Siswa.findByKode(kode_siswa);
       if (!siswa) {
@@ -93,7 +93,7 @@ class SiswaController {
         });
       }
 
-      const updated = await siswa.update({ nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa });
+      const updated = await siswa.update({ nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp });
 
       res.status(200).json({
         success: true,

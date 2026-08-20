@@ -22,7 +22,7 @@ const isValidDate = (value) => {
  * Semua field wajib diisi dan formatnya harus benar.
  */
 const validateCreateSiswa = (req, res, next) => {
-  const { kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa } = req.body;
+  const { kode_siswa, nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp } = req.body;
   const errors = [];
 
   if (kode_siswa !== undefined && kode_siswa !== null && String(kode_siswa).trim() !== "") {
@@ -51,6 +51,10 @@ const validateCreateSiswa = (req, res, next) => {
     errors.push("jurusan_siswa wajib diisi");
   }
 
+  if (isEmpty(no_telp)) {
+    errors.push("no_telp wajib diisi");
+  }
+
   if (errors.length > 0) {
     return res.status(400).json({ success: false, message: "Validasi gagal", errors });
   }
@@ -64,10 +68,10 @@ const validateCreateSiswa = (req, res, next) => {
  * formatnya tetap harus benar. Minimal satu field harus dikirim.
  */
 const validateUpdateSiswa = (req, res, next) => {
-  const { nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa } = req.body;
+  const { nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp } = req.body;
   const errors = [];
 
-  const adaField = [nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa].some(
+  const adaField = [nama_siswa, alamat_siswa, tgl_siswa, jurusan_siswa, no_telp].some(
     (v) => v !== undefined
   );
   if (!adaField) {
@@ -93,6 +97,10 @@ const validateUpdateSiswa = (req, res, next) => {
 
   if (jurusan_siswa !== undefined && isEmpty(jurusan_siswa)) {
     errors.push("jurusan_siswa tidak boleh kosong");
+  }
+
+  if (no_telp !== undefined && isEmpty(no_telp)) {
+    errors.push("no_telp tidak boleh kosong");
   }
 
   if (errors.length > 0) {

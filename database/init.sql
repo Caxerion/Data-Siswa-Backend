@@ -13,6 +13,7 @@ CREATE TABLE siswa (
   alamat_siswa   TEXT NOT NULL,
   tgl_siswa      DATE NOT NULL,
   jurusan_siswa  VARCHAR(100) NOT NULL,
+  no_telp        VARCHAR(20) NOT NULL,
   created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
